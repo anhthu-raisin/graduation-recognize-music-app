@@ -29,6 +29,9 @@ class MusicList extends StatelessWidget {
                   ),
                   const SizedBox(width: 25),
                   InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "playMusicPage");
+                    },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

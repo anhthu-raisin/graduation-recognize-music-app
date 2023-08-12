@@ -140,7 +140,7 @@ class _ListViewPageState extends State<ListViewPage> {
                       children: [
                         const MusicList(),
                         Container(
-                          color: Colors.red,
+                          color: Colors.white,
                         )
                       ],
                     ),
