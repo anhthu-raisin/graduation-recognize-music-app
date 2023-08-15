@@ -31,6 +31,9 @@ dependencies:
   # Recognize music
   acr_cloud_sdk: ^2.0.2
 
+  # RES API
+  dio: ^5.3.1
+
 
 dev_dependencies:
   flutter_test:

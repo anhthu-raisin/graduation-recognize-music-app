@@ -1,17 +1,29 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:hygge/screens/PlayMusicPage.dart';
 
-class DetectPage extends StatefulWidget {
+import '../viewmodels/home_vm.dart';
+
+class DetectPage extends HookConsumerWidget {
   const DetectPage({super.key});
 
   @override
-  State<DetectPage> createState() => _DetectPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final vm = ref.watch(homeViewModel);
 
-class _DetectPageState extends State<DetectPage> {
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+    ref.listen<HomeViewModel>(homeViewModel,
+        (HomeViewModel? oldVm, HomeViewModel newVm) {
+      if (newVm.success) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PlayMusicPage(songData: newVm.currentSong),
+            ));
+      }
+    });
+
+    return Scaffold(
       backgroundColor: Color.fromARGB(255, 149, 141, 163),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -19,17 +31,25 @@ class _DetectPageState extends State<DetectPage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Catch your Music"),
+              Text("ỦA ALO"),
               AvatarGlow(
-                animate: true,
-                endRadius: 100,
-                glowColor: Colors.deepPurple,
-                duration: Duration(milliseconds: 2000),
-                repeatPauseDuration: Duration(microseconds: 100),
-                child: Icon(
-                  Icons.music_note,
-                  color: Colors.white,
-                  size: 40,
+                animate: vm.isRecognizing,
+                endRadius: 75.0,
+                duration: const Duration(milliseconds: 2000),
+                repeat: true,
+                showTwoGlows: true,
+                repeatPauseDuration: const Duration(milliseconds: 100),
+                child: GestureDetector(
+                  onTap: () => vm.isRecognizing
+                      ? vm.stopRecognizing()
+                      : vm.startRecognizing(),
+                  child: const CircleAvatar(
+                    radius: 35,
+                    child: Icon(
+                      Icons.music_note,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ],

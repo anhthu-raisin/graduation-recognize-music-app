@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:hygge/models/song_model.dart';
 
 class PlayMusicPage extends StatefulWidget {
-  const PlayMusicPage({super.key});
+  const PlayMusicPage({super.key, required this.songData});
+
+  final HyggeSongModel songData;
 
   @override
   State<PlayMusicPage> createState() => _PlayMusicPageState();
@@ -50,6 +53,7 @@ class _PlayMusicPageState extends State<PlayMusicPage> {
 
     // Load audio from URL
     // audioPlayer.setSourceUrl(widget.songData.preview);
+    print("hello");
     audioPlayer.setSourceUrl(
         "https://firebasestorage.googleapis.com/v0/b/music-app-8ed69.appspot.com/o/RINI%20%E2%80%93%20My%20Favourite%20Clothes.mp3?alt=media&token=868cfc8c-5d8e-402d-82e0-3af477306991");
   }
@@ -136,7 +140,7 @@ class _PlayMusicPageState extends State<PlayMusicPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "La La Land",
+                                  widget.songData.title,
                                   style: TextStyle(
                                     color: Colors.white.withOpacity(0.9),
                                     fontSize: 24,
