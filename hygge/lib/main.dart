@@ -7,6 +7,7 @@ import 'package:hygge/screens/ListViewPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hygge/screens/PlayMusicPage.dart';
 import 'package:hygge/screens/ListSongTest.dart';
+import 'package:hygge/tests/AddSong.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
+        // "/": (context) => AddSong(),
         "/": (context) => const DetectPage(),
         // "/": (context) => const ListSong(),
         // "playMusicPage": (context) => const PlayMusicPage(),

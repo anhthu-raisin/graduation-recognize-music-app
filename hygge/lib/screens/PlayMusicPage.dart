@@ -52,10 +52,10 @@ class _PlayMusicPageState extends State<PlayMusicPage> {
     audioPlayer.setReleaseMode(ReleaseMode.loop);
 
     // Load audio from URL
-    // audioPlayer.setSourceUrl(widget.songData.preview);
-    print("hello");
-    audioPlayer.setSourceUrl(
-        "https://firebasestorage.googleapis.com/v0/b/music-app-8ed69.appspot.com/o/RINI%20%E2%80%93%20My%20Favourite%20Clothes.mp3?alt=media&token=868cfc8c-5d8e-402d-82e0-3af477306991");
+    audioPlayer.setSourceUrl(widget.songData.audio);
+    // print("hello");
+    // audioPlayer.setSourceUrl(
+    //     "https://firebasestorage.googleapis.com/v0/b/music-app-8ed69.appspot.com/o/RINI%20%E2%80%93%20My%20Favourite%20Clothes.mp3?alt=media&token=868cfc8c-5d8e-402d-82e0-3af477306991");
   }
 
   String formatTime(Duration duration) {
@@ -68,10 +68,10 @@ class _PlayMusicPageState extends State<PlayMusicPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage(
-              'https://i.pinimg.com/564x/4f/eb/9f/4feb9f5f60c5d0b87051473951456e37.jpg'),
+          image: NetworkImage(widget.songData.image),
+          // 'https://i.pinimg.com/564x/4f/eb/9f/4feb9f5f60c5d0b87051473951456e37.jpg'),
           fit: BoxFit.cover,
         ),
       ),
@@ -149,7 +149,7 @@ class _PlayMusicPageState extends State<PlayMusicPage> {
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
-                                  "Singer Name",
+                                  widget.songData.artist,
                                   style: TextStyle(
                                     color: Colors.white.withOpacity(0.8),
                                     fontSize: 18,
